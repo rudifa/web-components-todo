@@ -122,6 +122,7 @@ export class WcTodo extends LitElement {
 
     return html`
       <h1>Todo app</>
+      <h2></h2>
 
       <!-- add an input field with a button and a handler -->
       <div>     
@@ -129,8 +130,6 @@ export class WcTodo extends LitElement {
         <button @click=${this._addTodo}>Add Todo</button>
       </div>
 
-      <h2>${this.title} Nr. ${this.counter}!</h2>
-      <button @click=${this.__increment}>increment</button>
       <!-- embed a template in a template -->
       <ol>
         ${this.todos.map(todo => html`
