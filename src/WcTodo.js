@@ -26,6 +26,12 @@ export class WcTodo extends LitElement {
     this.counter = 5;
   }
 
+  // https://open-wc.org/codelabs/basics/lit-html.html?index=/codelabs/#2
+  connectedCallback() {
+    super.connectedCallback();
+    console.log('lit element connected');
+  }
+
   __increment() {
     this.counter += 1;
   }
