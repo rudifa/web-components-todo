@@ -32,7 +32,8 @@ export class WcTodo extends LitElement {
     super();
     this.title = 'Hey there';
     this.counter = 5;
-    this.todos = ['Do A', 'Do B', 'Do C'];
+    this.todos = [{text: 'Do A', finished: true}, 
+    {text: 'Do B', finished: false}, {text: 'Do C', finished: false}];
   }
 
   // https://open-wc.org/codelabs/basics/lit-html.html?index=/codelabs/#2
@@ -51,7 +52,7 @@ export class WcTodo extends LitElement {
       <button @click=${this.__increment}>increment</button>
       <!-- embed a template in a template -->
       <ol>
-        ${this.todos.map(todo => html`<li>${todo}</li>`)}
+        ${this.todos.map(todo => html`<li>${todo.text} (${todo.finished ? "finished" : "unfinished"})</li>`)}
       </ol>
       <p> ${footerTemplate}</p>
     `;
