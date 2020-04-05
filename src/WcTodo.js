@@ -1,5 +1,13 @@
 import { html, css, LitElement } from 'lit-element';
 
+// https://open-wc.org/codelabs/basics/lit-html.html?index=/codelabs/#4
+// define consts outside of the class, for insertion into the rendered html
+const author = 'open-wc';
+const homepage = 'https://open-wc.org/';
+const footerTemplate = html`
+  <footer>Made with love by <a href="${homepage}">${author}</a></footer>
+`;
+
 export class WcTodo extends LitElement {
   static get styles() {
     return css`
@@ -40,6 +48,8 @@ export class WcTodo extends LitElement {
     return html`
       <h2>${this.title} Nr. ${this.counter}!</h2>
       <button @click=${this.__increment}>increment</button>
+
+      <p> ${footerTemplate}</p>
     `;
   }
 }
