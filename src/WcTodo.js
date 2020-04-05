@@ -1,5 +1,20 @@
 import { html, css, LitElement } from 'lit-element';
 
+/* add a child component: TodoList
+*/
+
+class TodoList extends LitElement {
+  static get properties() {
+    return {
+      todos: { type: Array }
+    }
+  }
+
+}
+
+customElements.define('todo-list', TodoList)
+
+
 // https://open-wc.org/codelabs/basics/lit-html.html?index=/codelabs/#4
 // define consts outside of the class, for insertion into the rendered html
 const author = 'open-wc';
