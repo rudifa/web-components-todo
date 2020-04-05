@@ -10,6 +10,24 @@ class TodoList extends LitElement {
     };
   }
 
+  static get styles() {
+    return css`
+      :host {
+        color: blue;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      button {
+        background-color: transparent;
+        border: none;
+      }
+    `;
+  }
+
   render() {
     if (!this.todos) {
       return html``;
