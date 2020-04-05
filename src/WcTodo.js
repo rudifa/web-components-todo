@@ -55,9 +55,19 @@ export class WcTodo extends LitElement {
     this.todos = [...this.todos, {text, finished: false}];
   }
 
-_removeTodo(todo) {
-  this.todos = this.todos.filter(e => e != todo);
-}
+  _removeTodo(todo) {
+    this.todos = this.todos.filter(e => e != todo);
+  }
+
+  _changeTodoFinished(e, changedTodo) {
+    const finished = e.target.checked;
+    this.todos = this.todos.map((todo) => {
+      if (todo != changedTodo) {
+        return todo
+      }
+      return { ...changedTodo, finished }
+    })
+  }
 
   render() {
     return html`
@@ -73,9 +83,17 @@ _removeTodo(todo) {
       <button @click=${this.__increment}>increment</button>
       <!-- embed a template in a template -->
       <ol>
-        ${this.todos.map(todo => html`<li>${todo.text} (${todo.finished ? "finished" : "unfinished"})
-        <!-- add a button with a handler that calls the _removeTodo handler passing the target todo -->
-        <button @click=${() => this._removeTodo(todo)}>X</button>
+        ${this.todos.map(todo => html`
+        <li>
+          <!-- we prefixed the checked attribute on the checkbox with a .. 
+          This is special lit-html syntax to specifiy we want to set the property
+          named checked instead of the attribute named checked. -->
+          <input type="checkbox"
+          .checked=${todo.finished}
+          @change=${e => this._changeTodoFinished(e, todo)} />
+          ${todo.text}
+          <!-- add a button with a handler that calls the _removeTodo handler passing the target todo -->
+          <button @click=${() => this._removeTodo(todo)}>X</button>
         </li>`)}
       </ol>
       <p> ${footerTemplate}</p>
