@@ -46,8 +46,24 @@ export class WcTodo extends LitElement {
     this.counter += 1;
   }
 
+  _addTodo() {
+    const input = this.shadowRoot.getElementById('addTodoInput');
+    const text = input.value;
+    input.value = '';
+    this.todos.push({text, finished: false});
+    this.requestUpdate();
+  }
+
   render() {
     return html`
+      <h1>Todo app</>
+
+      <!-- add an input field with a button and a handler -->
+      <div>     
+        <input id="addTodoInput" placeholder="Name" />
+        <button @click=${this._addTodo}>Add Todo</button>
+      </div>
+
       <h2>${this.title} Nr. ${this.counter}!</h2>
       <button @click=${this.__increment}>increment</button>
       <!-- embed a template in a template -->
