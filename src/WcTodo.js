@@ -130,21 +130,7 @@ export class WcTodo extends LitElement {
         <button @click=${this._addTodo}>Add Todo</button>
       </div>
 
-      <!-- embed a template in a template -->
-      <ol>
-        ${this.todos.map(todo => html`
-        <li>
-          <!-- we prefixed the checked attribute on the checkbox with a .. 
-          This is special lit-html syntax to specifiy we want to set the property
-          named checked instead of the attribute named checked. -->
-          <input type="checkbox"
-          .checked=${todo.finished}
-          @change=${e => this._changeTodoFinished(e, todo)} />
-          ${todo.text}
-          <!-- add a button with a handler that calls the _removeTodo handler passing the target todo -->
-          <button @click=${() => this._removeTodo(todo)}>X</button>
-        </li>`)}
-      </ol>
+      <todo-list .todos=${this.todos}></todo-list>
 
       <div>Total finished: ${finishedCount}</div>
       <div>Total unfinished: ${unfinishedCount}</div>
