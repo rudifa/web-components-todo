@@ -25,6 +25,7 @@ export class WcTodo extends LitElement {
     return {
       title: { type: String },
       counter: { type: Number },
+      todos: { type: Array }
     };
   }
 
@@ -50,8 +51,8 @@ export class WcTodo extends LitElement {
     const input = this.shadowRoot.getElementById('addTodoInput');
     const text = input.value;
     input.value = '';
-    this.todos.push({text, finished: false});
-    this.requestUpdate();
+    // update the whole array of todos to trigger the redisplay
+    this.todos = [...this.todos, {text, finished: false}];
   }
 
   render() {
