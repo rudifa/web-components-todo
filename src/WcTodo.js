@@ -102,8 +102,8 @@ export class WcTodo extends LitElement {
     this.todos = [...this.todos, {text, finished: false}];
   }
 
-  _removeTodo(todo) {
-    this.todos = this.todos.filter(e => e != todo);
+  _removeTodo(e) {
+    this.todos = this.todos.filter(todo => todo !== e.detail);
   }
 
   _changeTodoFinished(e, changedTodo) {
