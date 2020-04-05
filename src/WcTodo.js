@@ -22,7 +22,8 @@ class TodoList extends LitElement {
           <li>
             <input
               type="checkbox"
-              .checked=${e => this._changeTodoFinished(e, todo)}
+              .checked=${todo.finished}
+              @change=${e => this._changeTodoFinished(e, todo)}
             />
             ${todo.text}
             <button @click=${() => this._removeTodo(todo)}>X</button>
