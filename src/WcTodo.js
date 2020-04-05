@@ -130,7 +130,12 @@ export class WcTodo extends LitElement {
         <button @click=${this._addTodo}>Add Todo</button>
       </div>
 
-      <todo-list .todos=${this.todos}></todo-list>
+      <!-- pass in todos and listen to custom events from the list -->
+      <todo-list 
+        .todos=${this.todos}
+        @change-todo-finished="${this._changeTodoFinished}"
+        @remove-todo="${this._removeTodo}"
+      ></todo-list>
 
       <div>Total finished: ${finishedCount}</div>
       <div>Total unfinished: ${unfinishedCount}</div>
