@@ -106,13 +106,13 @@ export class WcTodo extends LitElement {
     this.todos = this.todos.filter(todo => todo !== e.detail);
   }
 
-  _changeTodoFinished(e, changedTodo) {
-    const finished = e.target.checked;
+  _changeTodoFinished(e) {
+    const { changedTodo, finished } = e.detail;
     this.todos = this.todos.map((todo) => {
-      if (todo != changedTodo) {
-        return todo
+      if (todo !== changedTodo) {
+        return todo;
       }
-      return { ...changedTodo, finished }
+      return { ...changedTodo, finished };
     })
   }
 
