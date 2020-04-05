@@ -70,6 +70,9 @@ export class WcTodo extends LitElement {
   }
 
   render() {
+    const finishedCount = this.todos.filter(e => e.finished).length;
+    const unfinishedCount = this.todos.length - finishedCount;
+
     return html`
       <h1>Todo app</>
 
@@ -96,6 +99,10 @@ export class WcTodo extends LitElement {
           <button @click=${() => this._removeTodo(todo)}>X</button>
         </li>`)}
       </ol>
+
+      <div>Total finished: ${finishedCount}</div>
+      <div>Total unfinished: ${unfinishedCount}</div>
+
       <p> ${footerTemplate}</p>
     `;
   }
