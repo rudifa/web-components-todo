@@ -55,6 +55,10 @@ export class WcTodo extends LitElement {
     this.todos = [...this.todos, {text, finished: false}];
   }
 
+_removeTodo(todo) {
+  this.todos = this.todos.filter(e => e != todo);
+}
+
   render() {
     return html`
       <h1>Todo app</>
@@ -69,7 +73,10 @@ export class WcTodo extends LitElement {
       <button @click=${this.__increment}>increment</button>
       <!-- embed a template in a template -->
       <ol>
-        ${this.todos.map(todo => html`<li>${todo.text} (${todo.finished ? "finished" : "unfinished"})</li>`)}
+        ${this.todos.map(todo => html`<li>${todo.text} (${todo.finished ? "finished" : "unfinished"})
+        <!-- add a button with a handler that calls the _removeTodo handler passing the target todo -->
+        <button @click=${() => this._removeTodo(todo)}>X</button>
+        </li>`)}
       </ol>
       <p> ${footerTemplate}</p>
     `;
